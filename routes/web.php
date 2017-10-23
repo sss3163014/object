@@ -18,10 +18,16 @@ Route::get('/', function () {
 //后台路由
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 	//后台首页
-	Route::get('/', 'ShowController@index');
+	Route::get('/', 'Column\ShowController@index');
 	//栏目列表显示
 	//Route::post('list', 'ShowController');
 	Route::get('list', 'ShowController@index');
+
+	//用户模块
+	
+	Route::resource('user','UserController');
+	Route::get('auth/{id}','UserController@auth');
+	Route::post('auth/add','UserController@add');
 });
 
 //前台路由
