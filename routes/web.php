@@ -16,12 +16,20 @@ Route::get('/', function () {
 });
 
 //后台路由
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 	//后台首页
-	Route::get('/', 'Admin\Column\ShowController@show');
+	Route::get('/', 'ShowController@index');
+	//栏目列表显示
+	//Route::post('list', 'ShowController');
+	Route::get('list', 'ShowController@index');
 });
 
 //前台路由
-/*Route::group(['prefix' => 'home'], function() {
-
-});*/
+Route::group(['prefix' => 'home', 'namespace' =>'Home'], function() {
+	//登陆页面
+	Route::resource('/', 'ShowController');
+	//手机验证
+	Route::post('land/code', 'LandController@doText');
+	//登陆,注册页面
+	Route::resource('land', 'LandController');
+});

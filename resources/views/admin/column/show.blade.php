@@ -49,15 +49,15 @@
         @foreach ($array as $arr)
 		<tr class="gradeX">
         <td>
-            <img src="{{ asset('assets/img/k.jpg') }}" class="tpl-table-line-img" alt="">
+            <img src="assets/img/k.jpg" class="tpl-table-line-img" alt="">
         </td>
         <td class="am-text-middle">{{ $arr->type_id }}</td>
         <td class="am-text-middle">{{ $arr->name }}</td>
         <td class="am-text-middle">
            <div class="tpl-table-black-operation">
  <a href="{{ url('admin/list/create') }}" class=" am-btn-success"><i class="am-icon-plus"></i> 新增</a>
-   <a href="{{ url('admin/list'.$arr->id.'/edit') }}"><i class="am-icon-pencil"></i> 编辑</a>
-   <a href="javascript:doDel({{ $arr->id }})" class="tpl-table-black-operation-del">
+   <a href="{{ url('admin/list') }}"><i class="am-icon-pencil"></i> 编辑</a>
+   <a href="{{ url('') }}" class="tpl-table-black-operation-del">
    <i class="am-icon-trash"></i> 删除</a>
     </div>
                 </td>
@@ -67,7 +67,7 @@
         </tbody>
     </table>
     </div>
-            {!! $array->appends($where)->render() !!}
+            {!! $array->render() !!}
                             </div>
                         </div>
                     </div>

@@ -203,12 +203,12 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
                 <li class="sidebar-nav-link">
-                    <a href="index.html" class="active">
+                    <a href="{{ url('admin') }}" class="active">
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="tables.html">
+                    <a href="{{ url('admin/list') }}">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 栏目
                     </a>
                 </li>
@@ -221,6 +221,16 @@
         @yield('content')
     </div>
     </div>
+            <script>
+                function doDel(id)
+                {
+                    if(confirm('你确定要删除吗？')){
+                        var form = document.myform;
+                        form.action = 'admin/list'+id;
+                        form.submit();
+                    }
+                }
+            </script>
     <script src="{{ asset('assets/js/amazeui.min.js') }}"></script>
     <script src="{{ asset('assets/js/amazeui.datatables.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.responsive.min.js') }}"></script>
