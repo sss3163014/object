@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redis;
 //引入阿里大鱼
 use iscms\Alisms\SendsmsPusher as Sms;
+//引入数据库类
+use App\Model\index_users_login;
+use App\Model\data_users_info;
+use App\Model\data_users_register;
 
 class LandController extends Controller
 {
@@ -22,11 +26,11 @@ class LandController extends Controller
 
    public function __construct(Sms $sms)
    {
-      $this->indexUserLogin = \DB::table('index_users_login');
+      $this->indexUserLogin = new index_users_login;
 
-      $this->register = \DB::table('data_users_register');
+      $this->register = new data_users_register;
 
-      $this->userInfo = \DB::table('data_users_info');
+      $this->userInfo = new data_users_info;
 
       $this->sms = $sms;
    }
@@ -39,13 +43,12 @@ class LandController extends Controller
 
    public function doText(Request $request)
    {
-
          //去用户登陆表里查询
          $result = $this->indexUserLogin->where('login_name', $request['tel'])->first();
 
          if($result) {
             //返回错误信息
-          return '手机号已经注册';
+          return json_encode(['msg' => '手机号已经注册', 'code' => 1]);
          }
          //从缓存中的注册表中查询
          $exists = Redis::exists("STRING_USER_VERIFY_CODE_ ". $request['tel']);
@@ -78,9 +81,9 @@ class LandController extends Controller
          if($result->result->success) {
             //存入字符串列表中
             Redis::sEtex("STRING_USER_VERIFY_CODE_" . $phone, 600, $number);
-            return '已经发送';
+            return json_encode(['msg' => '发送成功']);
          } else {
-            return '发送失败';
+            return json_encode(['msg' => '发送失败']);
          }
   
    }
@@ -166,9 +169,8 @@ class LandController extends Controller
          $request->session()->put('user', $indexUserSql);
          //存入用户个人信息
          $request->session()->put('userInfo', $userinfoSql);
-         //返回注册成功提示
-         // return redirect('home.show');
-         return '注册成功';
+         //注册成功,跳转登陆页面
+         return redirect('home');
       } catch (Exception $e) {
          //事务回滚
          \DB::rollBack();
@@ -177,5 +179,38 @@ class LandController extends Controller
       }
    }
 
-  
+   public function doLand(Request $request)
+   {
+      $tel = $request['tel'];
+      $pass = $request['password'];
+      //查询缓存
+      $result = Redis::hgetall($tel);
+      //判断缓存中是否有数据
+      if(empty($result)) {
+         //没有，查询数据库
+         $result = $this->indexUserLogin->where('login_name', $tel)->first();
+         //判断帐号是否存在
+         if(empty($result)) {
+            return json_encode(['code' => 0, 'msg' => '帐号错误']);
+         }
+         //对象转化为数组
+         $result = $result->toArray();
+         //在redis存入用户登陆信息
+         redis::hmset($tel, $result);
+      }
+      //判断密码是否正确
+      if(md5($pass) != $result['password']) {
+         return json_encode(['code' => 1, 'msg' => '密码错误']);
+      }
+      //根据得到的user_id查询，并得到个人信息
+      $userinfo = $this->userInfo->where('user_id',$result['user_id'])->first();
+      //存入用户登陆信息
+      $request->session()->put('user', $result);
+      //存入用户个人信息
+      $request->session()->put('userInfo', $userinfo);
+
+      
+      //跳转回首页
+      return json_encode(['code' => 2]);
+   }
 }
