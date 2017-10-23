@@ -7,16 +7,16 @@
 <html>
 <head>
 	<title>舒服满生活</title>
-	<link rel="stylesheet" href="{{ asset('ho/land/css/style.css') }}">
-	<link href="{{ asset('ho/land/css/popup-box.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="{{ asset('homes/land/css/style.css') }}">
+	<link href="{{ asset('homes/land/css/popup-box.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<!--<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 	<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 -->
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-	</script><script src="{{ asset('ho/land/js/jquery.min.js') }}"></script>
-<script src="{{ asset('ho/land/js/jquery.magnific-popup.js') }}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ asset('ho/land/js/modernizr.custom.53451.js') }}"></script> 
+	</script><script src="{{ asset('homes/land/js/jquery.min.js') }}"></script>
+<script src="{{ asset('homes/land/js/jquery.magnific-popup.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('homes/land/js/modernizr.custom.53451.js') }}"></script> 
  <script>
 						$(document).ready(function() {
 						$('.popup-with-zoom-anim').magnificPopup({
@@ -40,9 +40,10 @@
 		<div class="signin-agile">
 			<h2>登录
 </h2>
-			<form action="#" method="post">
-				<input type="text" name="name" class="name" placeholder="手机号" required="">
-				<input type="password" name="password" class="password" placeholder="密码" required="">
+			<form onsubmit="return dologin()">
+				<input type="text" name="tel" class="name" id="tel" placeholder="手机号">
+				<div id="sell-error" style="color:red; margin-left:100px"></div>
+				<input type="password" name="password" id="pas" class="password" placeholder="密码">
 				<ul>
 					<li>
 						<input type="checkbox" id="brand1" value="">
@@ -55,8 +56,8 @@
 			</form>
 		</div>
 		<div class="signup-agileinfo">
-			<h3>报名</h3>
-			<p>表单在网页应用中十分重要，今天我要向大家分享一款基于HMLT5的分步骤注册表单，表单外观比较华丽，点击下一步按钮即可跳转到下一步填写注册信息。改HTML5表单使用了很多CSS3属性，从而在表单切换时拥有弹性的动画，是一款很不错的HTML5表单。</p>
+            <img src="{{ asset('homes/land/images/shequ_logo.png') }}" style="width:270px">
+			<h3>一个可以畅所欲言的地方！</h3>
 			<div class="more">
 				<a class="book popup-with-zoom-anim button-isi zoomIn animated" data-wow-delay=".5s" href="#small-dialog">点击注册</a>				
 			</div>
@@ -66,7 +67,7 @@
 	
 	<div class="pop-up"> 
 	<div id="small-dialog" class="mfp-hide book-form">
-		<h3>注册表单 </h3>
+		<h3>注册 </h3>
 			<form action="{{ url('home/land') }}" method="post" onsubmit="return doSend()">
 			{{ csrf_field() }}
 				<input type="text" name="tel" id="files" placeholder="请输入注册用的手机号" required=""/ onblur="doText()">
@@ -82,14 +83,23 @@
 <body>
 <script>
         var wati = 60;
+        //验证码发送
         function sendCode() 
         {
-            $.post("{{ url('home/land/code') }}", {'tel':$('#files').val(), '_token':"{{ csrf_token() }}"}, function(data) {
-                time($('#code'));
-                $('#sell-phone-error').html(data);
-            })     
+            //打包要发送的数据
+            var result = {'tel':$('#files').val(), '_token':"{{ csrf_token() }}"}
+            //ajax发送数据
+            $.post("{{ url('home/land/code') }}", result, function(data) {
+                if(data.code == 1) {
+                    $('#sell-phone-error').html(data.msg);
+                    //成功调用倒计时函数
+                } else {
+                    time($('#code'));
+                    //输出返回的结果
+                    $('#sell-phone-error').html(data.msg);
+                }
+            },'json')     
         }
-
         function doSend()
         {
             //验证手机格式
@@ -111,7 +121,7 @@
                return false;
             } 
         }
-
+        //倒计时
         function time(o) {
             if (wati == 0){
                 o.val('获取验证码');
@@ -129,21 +139,68 @@
             }
         }
 
-
+        //失去焦点
         function doText()
         {
             //验证手机格式
             if (!$("#files").val().match(/^1(3|4|5|7|8)\d{9}$/))
             { 
-                $('#sell-phone-error').html('手机号码格式不正确'); 
-                return;
+                $('#sell-error').html('手机号码格式不正确'); 
+                return false;
             } 
-
+            //验证密码格式
             if(!$("#passwd").val().match(/^[A-Za-z0-9]{6,12}$/))
             {
-               $('#sell-phone-error').html('密码格式不正确'); 
+               $('#sell-error').html('密码格式不正确'); 
                return false;
             }
         }
+
+
+       dologin = function()
+       {
+
+            if($("#tel").val().trim() == '')
+            {
+                $('#sell-error').html('帐号不能为空');
+                return false;
+            }
+
+            if($("#pas").val().trim() == '')
+            {
+               $('#sell-error').html('密码不能为空'); 
+               return false;
+            }
+
+       		//验证手机格式
+            if (!$("#tel").val().match(/^1(3|4|5|7|8)\d{9}$/))
+            { 
+                $('#sell-error').html('帐号格式不正确'); 
+                return false;
+            } 
+
+            if(!$("#pas").val().match(/^[A-Za-z0-9]{6,12}$/))
+            {
+               $('#sell-error').html('密码格式不正确'); 
+               return false;
+            }
+            //打包要发送的数据
+            var result = {'tel':$('#tel').val(), 'password':$('#pas').val(), '_token':"{{ csrf_token() }}"};
+            //ajax发送数据
+            $.post("{{ url('home/land/send') }}", result, function(data) {
+                //根据返回的数据得出结果
+            	if (data.code == 2) {
+            		window.location.href = "{{ url('home') }}";
+                } 
+                if (data.code == 1) {
+                    $('#sell-error').html(data.msg); 
+                } 
+            	if (data.code == 0) {
+                    $('#sell-error').html(data.msg); 
+                } 
+            },'json')
+
+            return false;
+       }
 </script>
 </html>
