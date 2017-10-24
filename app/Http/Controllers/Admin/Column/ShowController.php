@@ -17,11 +17,6 @@ class ShowController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show()
-    {
-    	return view('admin.column.index');
-    }
-
     public function index(Request $request)
     {   
         // $where = [];
@@ -32,10 +27,8 @@ class ShowController extends Controller
         // }
 
         $array = data_users_type::paginate(3);
-        //dd($array);
-       
 
-        return view('admin.column.show', compact('array','userlist'));
+        return view('admin.column.index', compact('array'));
     }
 
     /**

@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'login' ,'namespace' => 'Admi
 	Route::get('/', 'ShowController@index');
 	//栏目列表显示
 	//Route::post('list', 'ShowController');
-	Route::get('list', 'ShowController@index');
+	Route::get('list', 'Column\ShowController@index');
 });
 
 

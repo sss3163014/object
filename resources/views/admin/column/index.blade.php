@@ -67,7 +67,7 @@
         </tbody>
     </table>
     </div>
-            {!! $array->appends($where)->render() !!}
+            {!! $array->render() !!}
                             </div>
                         </div>
                     </div>
