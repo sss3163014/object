@@ -7,14 +7,11 @@
 
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-<meta property="qc:admins" content="15033067352456645346346546654" />
-<meta name = "format-detection" content = "telephone=no">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>舒服慢生活社区 - 可以让你体验快乐生活的平台</title>
-<meta name="author" content="凯迪网络">
-<meta name="keywords" content="凯迪,社区,凯迪网络,凯迪社区,深水区,猫眼看人,政经,思想,媒体,公共观察,舆情观察">
-<meta name="description" content="凯迪网络（www.kdnet.net），伴随中国互联网和网民共同成长，从中国第一代网络论坛发轫，凯迪以“客观、公正、理性、宽容”为宗旨，聚集了一千多万中高端注册用户，已发展成为中国最具代表性的互联网UGC （用户生成内容）平台之一，其中“猫眼看人”版块至今已连续十年在全国所有社区论坛版块中排名第一。凯迪网络全面启动新战略：专注于文化、财经、社会内容，面向互联网年轻一代打造新型服务。">
-<meta name="copyright" content="凯迪网络版权所有" />
+<title>{{ $result->site_name }}</title>
+<meta name="author" content="{{ $result->site_name }}">
+<meta name="keywords" content="{{ $result->key_word }}">
+<meta name="description" content="{{ $result->site_describe }}">
+<meta name="copyright" content="{{ $result->copyright }}" />
 
 
 <!--[if gte IE 9]>
@@ -56,7 +53,7 @@
 <div class="bbsnav">
 <div class="bbsCont">
 <div class="bbs-logo">
-<a href="//club.kdnet.net"><img src="{{ asset('homes/picture/bbs_logo.9d4c4827.png') }}"></a>
+<a href="//club.kdnet.net"><img src="{{ asset('uploads').'/'.$result->logo }}" style="width:140px;height:64px"></a>
 </div>
 <ul>
 <li><a target="_blank" href="//hot.kdnet.net/hottopiclist.asp">今日热帖</a></li>
@@ -69,14 +66,33 @@
 <i></i>
 注册用户<span class="text-info">14307557</span>人，目前在线<span class="text-warning">105063</span>人</div>
 </div>
-</div><div class="bbsCont">
+</div>
+	<!--广告-->
+	<style type="text/css">
+	*{margin:0;padding:0;list-style-type:none;}
+	a,img{border:0;}
+	body{font:12px/160% Arial, Helvetica, sans-serif, "新宋体";}
+	</style>
+
+	<script src="{{ asset('js/jquery-1.8.3.min.js') }}"></script>
+	<script src="{{ asset('homes/assets/js/html5zoo.js') }}"></script>
+	<script src="{{ asset('homes/assets/js/lovelygallery.js') }}"></script>
+	<div class="pics_wrap">
+	    <div id="html5zoo-1">
+	        <ul class="html5zoo-slides" style="display:none;">
+	            <li><a href="http://sucai.aspku.com/"><img src="{{ asset('homes/assets/images/001.jpg') }}" /></a></li>
+	            <li><a href="http://sucai.aspku.com/"><img src="{{ asset('homes/assets/images/002.jpg') }}" /></a></li>
+	            <li><a href="http://sucai.aspku.com/"><img src="{{ asset('homes/assets/images/003.jpg') }}" /></a></li>
+	            <li><a href="http://sucai.aspku.com/"><img src="{{ asset('homes/assets/images/004.jpg') }}" /></a></li>
+	            <li><a href="http://sucai.aspku.com/"><img src="{{ asset('homes/assets/images/005.jpg') }}" /></a></li>
+	        </ul>
+	    </div>
+	</div>
+<!--广告-->
+<div class="bbsCont">
 <div class="bbsLeft">
 <div class="hotplate">
-<div class="title">热门版块</div>
-<ul>
-<li><a href="#"><img src="{{ asset('homes/picture/1.43e9e240.png') }}"><span>猫眼看人</span></a></li>
-<li class="marRnone"><a target="_blank" href="//group.kdnet.net" class="avatar a-w80 br4 getMoreplate">更多</a></li>
-</ul>
+
 </div>
 <!--板块内容-->
 <div class="bbslist">
@@ -164,30 +180,17 @@
 <a href="http://youshengbb.com" target="_blank">生男孩的科学方法</a>
 </p>
 <p class="state">
-本站律师声明：本站互动区域原创内容版权属作者和本站共同所有。<br/>
-网络非盈利转载须注明作者姓名和文章的来源出处，其他媒体利用除注明作者姓名和文章的来源出处外还须按规定付酬。侵权必究。<br/>
-法律顾问：广信君达律师事务所 刘东栓 赵广群律师</p>
+	{{ $result->copyright }}
+</p>
 <div class="copyright">
 Copyright &copy;2017<a target="_blank" href="http://www.kdnet.net">kdnet.net</a>corporation.<i>All Rights Reserved</i>
 <p class="copy-link">
 <a target="_blank" href="http://about.kdnet.net/brief.php">关于凯迪</a>|<a target="_blank" href="http://about.kdnet.net/join.php">联系我们</a>|<a target="_blank" href="http://about.kdnet.net/join.php">广告服务</a>|<a target="_blank" href="http://about.kdnet.net/copyright.php">法律声明</a>|<a target="_blank" href="http://about.kdnet.net/join-us.php">加入凯迪</a>
 </p>
 </div>
-<p class="app-download-btn">
-<a class="btn btn-default" href="https://itunes.apple.com/us/app/id422816553?mt=8" target="_blank"><i class="fa fa-apple"></i>iOS客户端</a>
-<a class="btn btn-default" href="http://m.kdnet.net/app/newest/url/a" target="_blank"><i class="fa fa-android"></i>Android客户端</a>
-</p>
-<p class="follow-info">
-关注我们：<a class="j-follow-qrcode" href="javascript:void(0);"><i class="fa fa-weixin"></i></a>
-<a href="http://www.weibo.com/p/1002061744259092" target="_blank"><i class="fa fa-weibo"></i></a></a>
-</p>
 </div>
 </div>
 <div class="popover-mask"></div>
-<div class="popover-qrcode">
-<p>关注我们的微信公众号，发现信息价值。<br>微信中搜索<strong class="text-primary">「凯迪」</strong>或扫一扫下方二维码：</p>
-<img src="{{ asset('homes/picture/kd_wechat_qrcode.d05c21e8.png') }}" />
-</div>
 <script src="{{ asset('homes/js/k.js') }}"></script>
 </body><script type="text/javascript" src="{{ asset('homes/js/common.7392a1ba.js') }}"></script>
 <script type="text/javascript" src="{{ asset('homes/js/log.js') }}"></script>

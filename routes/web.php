@@ -1,5 +1,5 @@
 <?php
-
+use App\Model\data_basic_config;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,29 +14,31 @@
 Route::get('admin/captcha/{tmp}', 'Admin\LoginController@captcha');
 //后台登陆路由
 Route::resource('admin/login', 'Admin\LoginController');
-//后台路由
-Route::group(['prefix' => 'admin', 'middleware' => 'login' ,'namespace' => 'Admin'], function() {
-	//后台首页
+//后台路由群
+Route::group(['prefix' => 'admin', 'middleware' => 'login', 'namespace' => 'Admin'], function() {
+	//后台首页路由
 	Route::get('/', 'ShowController@index');
-	//栏目列表显示
-	//Route::post('list', 'ShowController');
-	Route::get('list', 'Column\ShowController@index');
+	//栏目列表路由
+	Route::resource('list', 'Column\ShowController');
+	//站点配置路由
+	Route::resource('site', 'Site\ShowController');
 });
 
-
-
-//前台首页
+//跳转维护页面
+Route::view('weihui', 'weihui');
+//前台首页路由 
 Route::get('/', function () {
-    return view('home.index');
-});
-//前台路由
-Route::group(['prefix' => 'home', 'namespace' =>'Home'], function() {
+	$result = data_basic_config::find(1);
+    return view('home.index', compact('result'));
+})->middleware('on_off');
+//前台路由群
+Route::group(['prefix' => 'home', 'namespace' =>'Home', 'middleware' => 'on_off'], function() {
 	//前台页面
 	Route::resource('/', 'ShowController');
-	//手机验证
+	//手机验证路由 
 	Route::post('land/code', 'LandController@doText');
-	//登陆,注册页面
+	//登陆,注册页面路由
 	Route::resource('land', 'LandController');
-	//登陆验证
+	//登陆验证路由
 	Route::post('land/send', 'LandController@doLand');
 });

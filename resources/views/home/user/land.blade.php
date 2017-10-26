@@ -190,7 +190,7 @@
             $.post("{{ url('home/land/send') }}", result, function(data) {
                 //根据返回的数据得出结果
             	if (data.code == 2) {
-            		window.location.href = "{{ url('home') }}";
+            		window.location.href = "{{ url('/') }}";
                 } 
                 if (data.code == 1) {
                     $('#sell-error').html(data.msg); 

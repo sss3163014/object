@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('admins/assets/css/amazeui.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admins/assets/css/amazeui.datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admins/assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('admins/css/bootstrap.min.css') }}">
     <script src="{{ asset('admins/assets/js/jquery.min.js') }}"></script>
 
 </head>
@@ -209,33 +210,32 @@
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="{{ url('admin/list') }}">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 栏目
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 栏目列表
                     </a>
                 </li>
-
+                <li class="sidebar-nav-link">
+                    <a href="{{ url('admin/site') }}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 站点配置
+                    </a>
+                </li>
             </ul>
-        </div>
-
-
+        </div>  
         <!-- 内容区域 -->
         @yield('content')
+        <!-- 内容区域 -->
     </div>
     </div>
             <script>
-                function doDel(id)
-                {
+                doText = function (id) {
                     if(confirm('你确定要删除吗？')){
-                        var form = document.myform;
-                        form.action = 'admin/list'+id;
-                        form.submit();
+                        $('#ooxx').attr('action', 'list/'+id).submit();
                     }
-                }
+                }  
             </script>
     <script src="{{ asset('admins/assets/js/amazeui.min.js') }}"></script>
     <script src="{{ asset('admins/assets/js/amazeui.datatables.min.js') }}"></script>
     <script src="{{ asset('admins/assets/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('admins/assets/js/app.js') }}"></script>
 
-</body>
-
+</body>   
 </html>

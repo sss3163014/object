@@ -11,21 +11,7 @@
 
                             </div>
                             <div class="widget-body  am-fr">
-     <form action="{{ url('admin/list') }}">
-        <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
-          <div class="am-form-group tpl-table-list-select">
-            <select data-am-selected="{btnSize: 'sm'}">
-              <option value="option1">所有类别</option>
-              <option value="option2">IT业界</option>
-              <option value="option3">数码产品</option>
-              <option value="option3">笔记本电脑</option>
-              <option value="option3">平板电脑</option>
-              <option value="option3">只能手机</option>
-              <option value="option3">超极本</option>
-            </select>
-          </div>
-        </div>
-       
+     <form action="{{ url('admin/list') }}" method="post">
     	<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
         <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
             <input type="text" name="name" class="am-form-field ">
@@ -47,19 +33,20 @@
         </thead>
         <tbody>
         @foreach ($array as $arr)
-		<tr class="gradeX">
+        <tr class="gradeX">
         <td>
-            <img src="{{ asset('assets/img/k.jpg') }}" class="tpl-table-line-img" alt="">
+            <img src="{{ asset('uploads').'/s_'.$arr->logo }}" class="tpl-table-line-img" alt="">
         </td>
         <td class="am-text-middle">{{ $arr->type_id }}</td>
         <td class="am-text-middle">{{ $arr->name }}</td>
         <td class="am-text-middle">
            <div class="tpl-table-black-operation">
  <a href="{{ url('admin/list/create') }}" class=" am-btn-success"><i class="am-icon-plus"></i> 新增</a>
-   <a href="{{ url('admin/list'.$arr->id.'/edit') }}"><i class="am-icon-pencil"></i> 编辑</a>
-   <a href="javascript:doDel({{ $arr->id }})" class="tpl-table-black-operation-del">
+   <a href="{{ url('admin/list').'/'.$arr->id }}"><i class="am-icon-pencil"></i> 编辑</a>
+   <a href="javascript:doText({{ $arr->id }});" class="tpl-table-black-operation-del">
    <i class="am-icon-trash"></i> 删除</a>
     </div>
+            
                 </td>
             </tr>
         @endforeach    
@@ -67,11 +54,24 @@
         </tbody>
     </table>
     </div>
-            {!! $array->render() !!}
+         {{ $array->links() }}
+            <form method="post" style="display:none;" id="ooxx">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+            </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+      
 @endsection
+
+
+
+
+
+
+
+

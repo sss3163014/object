@@ -13,11 +13,23 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Gregwar\Captcha\CaptchaBuilder;
 class LoginController extends Controller
 {
+	/**
+     *	登陆页面显示
+     *
+     * @param  
+     * @return 页面
+     */
 	public function index()
 	{
 		return view('admin/login');
 	}
 
+	/**
+     *	验证码显示
+     *
+     * @param  
+     * @return 验证码
+     */
 	public function captcha($tmp)
 	{
 
@@ -34,6 +46,12 @@ class LoginController extends Controller
 		return response($builder->output())->header('Content-Type', 'image/jpeg');
 	}
 
+	/**
+     *	登陆数据操作
+     *
+     * @param  
+     * @return 
+     */
 	public function store(Request $request)
 	{
 		$code = \Session::get('mycode');

@@ -12,4 +12,11 @@ class data_users_type extends Model
      * @var string
      */
     protected $table = 'data_users_type';
+
+    /**
+     * 该模型是否被自动维护时间戳
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }

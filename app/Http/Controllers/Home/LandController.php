@@ -24,6 +24,7 @@ class LandController extends Controller
 
    public $sms;
 
+
    public function __construct(Sms $sms)
    {
       $this->indexUserLogin = new index_users_login;
@@ -35,16 +36,29 @@ class LandController extends Controller
       $this->sms = $sms;
    }
    
+
+   /**
+     * 前台登陆页面显示
+     *
+     * @param  int  $id
+     * @return 页面
+     */
    public function index()
    {
       return view('home.user.land');
    }
 
 
+   /**
+     * 短信验证操作
+     *
+     * @param  int  $id
+     * @return 验证码
+     */
    public function doText(Request $request)
    {
          //去用户登陆表里查询
-         $result = $this->indexUserLogin->where('login_name', $request['tel'])->first();
+         $result = index_users_login::where('login_name', $request['tel'])->first();
 
          if($result) {
             //返回错误信息
@@ -89,6 +103,12 @@ class LandController extends Controller
    }
 
 
+   /**
+     * 账号，密码操作
+     *
+     * @param  int  $id
+     * @return 真，假
+     */
    public function store(Request $request)
    {  
       //密码处理
@@ -179,6 +199,14 @@ class LandController extends Controller
       }
    }
 
+
+
+   /**
+     * 登陆操作
+     *
+     * @param  int  $id
+     * @return 真，假
+     */
    public function doLand(Request $request)
    {
       $tel = $request['tel'];
