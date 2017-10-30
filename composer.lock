@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "de006041fad5ed3733ca69a87348516b",
+=======
+    "content-hash": "ac32011e2eaebcfb6ccb62ff6ea60d46",
+>>>>>>> origin/zhaweidong
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2577,6 +2581,7 @@
             "time": "2015-05-11T14:41:42+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "intervention/image",
             "version": "2.4.1",
             "source": {
@@ -2647,6 +2652,8 @@
             "time": "2017-09-21T16:29:17+00:00"
         },
         {
+=======
+>>>>>>> origin/zhaweidong
             "name": "mews/captcha",
             "version": "2.1.7",
             "source": {
@@ -2656,7 +2663,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/mewebstudio/captcha/7d48d7dc5df0fb2225b086ba85cb3fef9832b235.zip",
+=======
+                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/7d48d7dc5df0fb2225b086ba85cb3fef9832b235",
+>>>>>>> origin/zhaweidong
                 "reference": "7d48d7dc5df0fb2225b086ba85cb3fef9832b235",
                 "shasum": ""
             },

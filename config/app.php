@@ -163,6 +163,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,//图片等比例缩放
 
         /*
          * Package Service Providers...
@@ -177,7 +178,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         iscms\Alisms\AlidayuServiceProvider::class,//阿里大鱼
+<<<<<<< HEAD
     
+=======
+>>>>>>> origin/zhaweidong
 
     ],
 
@@ -227,7 +231,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+<<<<<<< HEAD
       
+=======
+        'Image' => Intervention\Image\Facades\Image::class,//图片等比例缩放
+>>>>>>> origin/zhaweidong
 
     ],
 

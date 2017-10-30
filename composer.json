@@ -8,6 +8,10 @@
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
         "gregwar/captcha": "dev-master",
+<<<<<<< HEAD
+=======
+        "intervention/image": "^2.4",
+>>>>>>> origin/zhaweidong
         "iscms/alisms-for-laravel": "^0.0.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
