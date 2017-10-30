@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
@@ -144,7 +145,6 @@ class UserController extends Controller
            return back()->with('mes','修改失败!');
         }
     }
-
-
-    
+  
 }
+

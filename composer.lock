@@ -4,11 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "de006041fad5ed3733ca69a87348516b",
-=======
+
     "content-hash": "ac32011e2eaebcfb6ccb62ff6ea60d46",
->>>>>>> origin/zhaweidong
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2799,8 +2796,17 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/myclabs/DeepCopy/3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e.zip",
+=======
+<<<<<<< HEAD
+                "url": "https://files.phpcomposer.com/files/myclabs/DeepCopy/8e6e04167378abf1ddb4d3522d8755c5fd90d102.zip",
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+=======
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
+>>>>>>> 94492d27e23541b03880c098d6b99e78249ca46d
                 "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
+>>>>>>> zhaweidong
                 "shasum": ""
             },
             "require": {

@@ -15,6 +15,7 @@ Route::get('admin/captcha/{tmp}', 'Admin\LoginController@captcha');
 //后台登陆路由
 Route::resource('admin/login', 'Admin\LoginController');
 
+
 //后台路由群
 Route::group(['prefix' => 'admin', 'middleware' => 'login', 'namespace' => 'Admin'], function() {
 	//后台首页路由
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'login', 'namespace' => 'Admi
 	//站点配置路由
 	Route::resource('site', 'Site\ShowController');
 	Route::post('site', 'Site\ShowController@putFile');
+
 
 		//用户模块
 	Route::resource('user','UserController');
