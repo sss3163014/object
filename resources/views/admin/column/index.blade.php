@@ -11,6 +11,18 @@
 
                             </div>
                             <div class="widget-body  am-fr">
+
+                                 <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                    <div class="am-form-group">
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a href="{{ url('admin/list/create') }}" class="am-btn am-btn-default am-btn-success""><span class="am-icon-plus"></span> 新增</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
      <form action="{{ url('admin/list') }}" method="post">
     	<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
         <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
@@ -41,7 +53,6 @@
         <td class="am-text-middle">{{ $arr->name }}</td>
         <td class="am-text-middle">
            <div class="tpl-table-black-operation">
- <a href="{{ url('admin/list/create') }}" class=" am-btn-success"><i class="am-icon-plus"></i> 新增</a>
    <a href="{{ url('admin/list').'/'.$arr->id }}"><i class="am-icon-pencil"></i> 编辑</a>
    <a href="javascript:doText({{ $arr->id }});" class="tpl-table-black-operation-del">
    <i class="am-icon-trash"></i> 删除</a>
@@ -54,7 +65,7 @@
         </tbody>
     </table>
     </div>
-         {{ $array->links() }}
+        
             <form method="post" style="display:none;" id="ooxx">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}

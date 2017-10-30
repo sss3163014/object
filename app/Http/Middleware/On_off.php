@@ -16,9 +16,9 @@ class On_off
      */
     public function handle($request, Closure $next)
     {
-        $result = data_basic_config::find(1);
-        $off = $result->no_off;
-        if ($off == 0) {
+        $re = data_basic_config::where('site_name', 'wed_status')->first();
+        // dd($re->site_content);
+        if ($re->site_content == '关') {
             return redirect('weihui');
         }
         return $next($request);

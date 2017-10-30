@@ -19,4 +19,6 @@ class data_basic_config extends Model
      * @var bool
      */
     public $timestamps = false;
+    //不允许数据表中被批量操作的字段,意思只要写上就不允许添加了
+    public $guarded = [];
 }

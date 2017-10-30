@@ -7,11 +7,11 @@
 
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-<title>{{ $result->site_name }}</title>
-<meta name="author" content="{{ $result->site_name }}">
-<meta name="keywords" content="{{ $result->key_word }}">
-<meta name="description" content="{{ $result->site_describe }}">
-<meta name="copyright" content="{{ $result->copyright }}" />
+<title>{{ config('web.wed_title') }}</title>
+<meta name="author" content="{{ config('web.seo_title') }}">
+<meta name="keywords" content="{{ config('web.key_word') }}">
+<meta name="description" content="{{ config('web.description') }}">
+<meta name="copyright" content="{{ config('web.copyright') }}" />
 
 
 <!--[if gte IE 9]>
@@ -36,16 +36,19 @@
 <li><a target="_blank" href="http://group.kdnet.net">群组</a></li>
 </ul>
 <div class="rightnav">
-<div class="search-box">
-<form class="search-form" action="http://search.kdnet.net/" target="_blank">
-<input type="text" class="form-control" placeholder="" value="" name="q">
-<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-</form>
+@if(session('user'))
+<div class="login-box">
+<h4 style="color:green">{{ session('userInfo')->nickname }}先生!欢迎你的到来</h4>
 </div>
+<div class="login-box">
+<a href="{{ url('home/session') }}">注销</a>
+</div>
+@else
 <div class="login-box">
 <a href="{{ url('home/land') }}">登录</a>
 <a href="{{ url('home/land') }}">注册</a>
 </div>
+@endif
 </div>
 </div>
 </div>
@@ -53,7 +56,7 @@
 <div class="bbsnav">
 <div class="bbsCont">
 <div class="bbs-logo">
-<a href="//club.kdnet.net"><img src="{{ asset('uploads').'/'.$result->logo }}" style="width:140px;height:64px"></a>
+<a href="//club.kdnet.net"><img src="{{ asset('admins/assets/img/logob.png') }}" style="width:140px;height:64px;"></a>
 </div>
 <ul>
 <li><a target="_blank" href="//hot.kdnet.net/hottopiclist.asp">今日热帖</a></li>
@@ -62,9 +65,14 @@
 <li><a href="#">猫眼观察</a></li>
 <li><a target="_blank" href="#">猫论天下</a></li>
 </ul>
+@if(session('user'))
+<a href="#"><img src="{{ url('uploads').'/'.session('userInfo')->avatar }}" style="width:140px;height:64px;float:right;margin-top:20px;" id="green"></a>
+<div id='love' style="float:right;color:red;margin:20px;font-size:16px"></div>
+@else
 <div class="bbsdata">
 <i></i>
 注册用户<span class="text-info">14307557</span>人，目前在线<span class="text-warning">105063</span>人</div>
+@endif
 </div>
 </div>
 	<!--广告-->
@@ -180,7 +188,7 @@
 <a href="http://youshengbb.com" target="_blank">生男孩的科学方法</a>
 </p>
 <p class="state">
-	{{ $result->copyright }}
+	{{ config('web.number') }}
 </p>
 <div class="copyright">
 Copyright &copy;2017<a target="_blank" href="http://www.kdnet.net">kdnet.net</a>corporation.<i>All Rights Reserved</i>
@@ -196,4 +204,14 @@ Copyright &copy;2017<a target="_blank" href="http://www.kdnet.net">kdnet.net</a>
 <script type="text/javascript" src="{{ asset('homes/js/log.js') }}"></script>
 <script type="text/javascript" src="{{ asset('homes/js/bbs.1fadd174.js') }}"></script>
 <script type="text/javascript" src="{{ asset('homes/js/bbsindex.dd163fe6.js') }}"></script>
+<script>
+	$("#green").hover(
+	  function () {
+	    $('#love').html('个人中心');
+	  },
+	  function () {
+	    $('#love').html('');
+	  }
+	);
+</script>
 </html>

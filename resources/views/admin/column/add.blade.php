@@ -14,6 +14,18 @@
 
         <form class="am-form tpl-form-border-form tpl-form-border-br" method="post" action="{{ url('admin/list') }}" enctype="multipart/form-data">
         				{{ csrf_field() }}
+                           <div class="am-form-group">
+                                <label for="user-phone" class="am-u-sm-3 am-form-label">分类 </label>
+                                <div class="am-u-sm-9">
+                                <select data-am-selected="" name="type_id">
+                                  <option value="0">顶级分类</option>
+                                  @foreach($arr as $k=>$v)
+                                  <option value="{{ $v->id }}">{{ $v->name }}</option>
+                                  @endforeach
+                                </select>
+                                </div>
+                            </div>    
+
             <div class="am-form-group">
                 <label for="user-name" class="am-u-sm-3 am-form-label">标题 </label>
                 <div class="am-u-sm-9">

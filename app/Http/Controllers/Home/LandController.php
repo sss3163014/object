@@ -158,7 +158,7 @@ class LandController extends Controller
          //用户注册原始表的ID是用户基本表，用户登陆索引表的user_id
          $request['user_id'] =  $registerResult;
          //准备sql语句
-         $indexUserSql = [
+         $indexUser = [
                'user_id' => $request['user_id'],
                'login_name' => $request['login_name'],
                'password' => $request['password'],
@@ -166,31 +166,29 @@ class LandController extends Controller
                'last_login_at' => $request['last_login_at']
          ];
          //向用户个人信息表中添加一条数据
-         $userinfoResilt = $this->indexUserLogin->insert($indexUserSql);
+         $userinfoResilt = $this->indexUserLogin->insert($indexUser);
          //判断用户个人信息表是否成功
          if(empty($userinfoResilt)) {
             throw new Exception('注册失败2');
          }
          //准备sql语句
-         $userinfoSql = [
+         $userInfosql = [
                'user_id' => $request['user_id'],
                'nickname' => $request['nickname'],
                'tel' =>  $request['tel']
          ];
-         //向用户登陆表中添加一条信息
-         $indexUserResult = $this->userInfo->insert($userinfoSql);
+         //向用户登陆表中添加一条信息，返回添加的信息对象
+         $userInfo = data_users_info::create($userInfosql);
          //判断用户登陆表是否成功
-         if(empty($indexUserResult)) {
+         if(empty($userInfo)) {
             throw new Exception('注册失败3');
          }
          //全部正确  事务提交
          \DB::commit();
-         //存入用户登陆信息
-         $request->session()->put('user', $indexUserSql);
-         //存入用户个人信息
-         $request->session()->put('userInfo', $userinfoSql);
+         //存入用户登陆和个人信息
+         session(['user'=> $indexUser, 'userInfo'=> $userInfo]);
          //注册成功,跳转登陆页面
-         return redirect('home');
+         return redirect('/');
       } catch (Exception $e) {
          //事务回滚
          \DB::rollBack();
@@ -212,9 +210,9 @@ class LandController extends Controller
       $tel = $request['tel'];
       $pass = $request['password'];
       //查询缓存
-      $result = Redis::hgetall($tel);
+      $indexUser = Redis::hgetall($tel);
       //判断缓存中是否有数据
-      if(empty($result)) {
+      if(empty($indexUser)) {
          //没有，查询数据库
          $result = $this->indexUserLogin->where('login_name', $tel)->first();
          //判断帐号是否存在
@@ -222,23 +220,21 @@ class LandController extends Controller
             return json_encode(['code' => 0, 'msg' => '帐号错误']);
          }
          //对象转化为数组
-         $result = $result->toArray();
+         $indexUser = $result->toArray();
          //在redis存入用户登陆信息
-         redis::hmset($tel, $result);
+         redis::hmset($tel, $indexUser);
       }
       //判断密码是否正确
-      if(md5($pass) != $result['password']) {
+      if(md5($pass) != $indexUser['password']) {
          return json_encode(['code' => 1, 'msg' => '密码错误']);
       }
       //根据得到的user_id查询，并得到个人信息
-      $userinfo = $this->userInfo->where('user_id',$result['user_id'])->first();
-      //存入用户登陆信息
-      $request->session()->put('user', $result);
-      //存入用户个人信息
-      $request->session()->put('userInfo', $userinfo);
-
-      
+      $userinfo = $this->userInfo->where('user_id',$indexUser['user_id'])->first();
+      //存入用户登陆信息,存入用户个人信息
+      session(['user'=> $indexUser, 'userInfo'=> $userinfo]);
       //跳转回首页
       return json_encode(['code' => 2]);
    }
+
+
 }

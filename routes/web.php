@@ -22,23 +22,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'login', 'namespace' => 'Admi
 	Route::resource('list', 'Column\ShowController');
 	//站点配置路由
 	Route::resource('site', 'Site\ShowController');
+	Route::post('site', 'Site\ShowController@putFile');
 });
 
 //跳转维护页面
 Route::view('weihui', 'weihui');
 //前台首页路由 
 Route::get('/', function () {
-	$result = data_basic_config::find(1);
-    return view('home.index', compact('result'));
+    return view('home.index');
 })->middleware('on_off');
 //前台路由群
 Route::group(['prefix' => 'home', 'namespace' =>'Home', 'middleware' => 'on_off'], function() {
-	//前台页面
-	Route::resource('/', 'ShowController');
 	//手机验证路由 
 	Route::post('land/code', 'LandController@doText');
 	//登陆,注册页面路由
 	Route::resource('land', 'LandController');
 	//登陆验证路由
 	Route::post('land/send', 'LandController@doLand');
+	//注销路由
+	Route::get('session','SessionController@index');
 });

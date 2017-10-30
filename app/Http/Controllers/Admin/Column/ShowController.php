@@ -28,7 +28,7 @@ class ShowController extends Controller
         // }
 
         // $array = data_users_type::all();
-        $array = data_users_type::paginate(3);
+        $array = data_users_type::get();
 
          // dd($array);
 
@@ -42,7 +42,8 @@ class ShowController extends Controller
      */
     public function create()
     {
-        return view('admin.column.add');
+        $arr = data_users_type::where('type_id', 0)->get();
+        return view('admin.column.add', compact('arr'));
     }
 
      /**
@@ -79,7 +80,7 @@ class ShowController extends Controller
                     // 准备sql语句
                     $sql = [
                         'name' => $request['title'],
-                        'type_id' => 0,
+                        'type_id' => $request['type_id'],
                         'logo' => $picname
                     ];
                     //插入数据库中
