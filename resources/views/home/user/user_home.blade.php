@@ -10,31 +10,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-      <link rel="stylesheet" href="{{ asset('admins/assets/css/bootstrap.min.css') }}"/>
-    <link rel="icon" type="image/png" href="{{ asset('admins/assets/i/favicon.png') }}">
-    <link rel="apple-touch-icon-precomposed" href="{{ asset('admins/assets/i/app-icon72x72@2x.png') }}">
+    <link rel="icon" type="image/png" href="{{asset('homes/assets/i/favicon.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('homes/assets/i/app-icon72x72@2x.png')}}">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <script src="{{ asset('admins/assets/js/echarts.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('admins/assets/css/amazeui.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('admins/assets/css/amazeui.datatables.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('admins/assets/css/app.css') }}">
-    <script src="{{ asset('admins/assets/js/jquery.min.js') }}"></script>
+    <script src="{{asset('homes/assets/js/echarts.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('homes/assets/css/amazeui.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('homes/assets/css/amazeui.datatables.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('homes/assets/css/app.css')}}">
+    <script src="{{asset('homes/assets/js/jquery.min.js')}}"></script>
 
 </head>
 
 <body data-type="index">
-    <script src="{{ asset('admins/assets/js/theme.js') }}"></script>
+    <script src="{{asset('homes/assets/js/theme.js')}}"></script>
     <div class="am-g tpl-g">
         <!-- 头部 -->
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="{{ asset('admins/assets/img/logo.png') }}" alt=""></a>
+                <a href="javascript:;"><img src="{{asset('homes/assets/img/logo.png')}}" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
                 <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list" id="hide">
+                <div class="am-fl tpl-header-switch-button am-icon-list">
                     <span>
 
                 </span>
@@ -65,7 +64,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="{{ asset('admins/assets/img/user04.png') }}" alt="">
+                                            <img src="{{asset('homes/assets/img/user04.png')}}" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             3小时前
@@ -84,7 +83,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="{{ asset('admins/assets/img/user02.png') }}" alt="">
+                                            <img src="{{asset('homes/assets/img/user02.png')}}" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             5天前
@@ -185,12 +184,12 @@
             </div>
         </div>
         <!-- 侧边导航栏 -->
-        <div class="left-sidebar"  id="left_nave">
+        <div class="left-sidebar">
             <!-- 用户信息 -->
             <div class="tpl-sidebar-user-panel">
                 <div class="tpl-user-panel-slide-toggleable">
                     <div class="tpl-user-panel-profile-picture">
-                        <img src="{{ asset('admins/assets/img/user04.png') }}" alt="">
+                        <img src="{{asset('homes/update/user/user2.png')}}" alt="">
                     </div>
                     <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
@@ -201,79 +200,43 @@
             </div>
 
             <!-- 菜单 -->
-            <ul class="sidebar-nav" id="nav">
-                <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-heading">我的积分 <span class="sidebar-nav-heading-info">250</span></li>
                 <li class="sidebar-nav-link">
-                    <a href="{{ url('admin') }}" >
-                        <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+                    <a href="index.html" class="active">
+                        <i class="am-icon-home sidebar-nav-link-logo"></i> 我的首页
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{{ url('admin/list') }}">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 栏目
+                    <a href="home/">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 我的帖子
                     </a>
                 </li>
-
-                <li class="sidebar-nav-link" >
-                    <a href="javascript:;" class="sidebar-nav-sub-title"  id="user_tab" >
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 用户管理
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                <li class="sidebar-nav-link">
+                    <a href="calendar.html">
+                        <i class="am-icon-calendar sidebar-nav-link-logo"></i> 我的回帖
                     </a>
-                    <ul class="sidebar-nav sidebar-nav-sub" style="display: none;" id="user_nav">
-                         <li class="sidebar-nav-link">
-                            <a href="{{ url('admin/user/create') }}">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 用户添加
-                            </a>
-                        </li>
-
-                        <li class="sidebar-nav-link ">
-                            <a href="{{ url('admin/user') }}" >
-                                <span class="am-icon-angle-right sidebar-nav-link-logo" ></span> 用户列表
-                            </a>
-                        </li>    
-                    </ul>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="form.html">
+                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 我的相册
+                    </a>
                 </li>
             </ul>
         </div>
 
 
         <!-- 内容区域 -->
-        @yield('content')
+        <div class="tpl-content-wrapper">
+
+        </div>
     </div>
     </div>
-    <script>
-        function doDel(id)
-        {
-            if(confirm('你确定要删除吗？')){
-                var form = document.myform;
-                form.action = 'admin/list'+id;
-                form.submit();
-            }
-        }
+    <script src="{{asset('homes/assets/js/amazeui.min.js')}}"></script>
+    <script src="{{asset('homes/assets/js/amazeui.datatables.min.js')}}"></script>
+    <script src="{{asset('homes/assets/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('homes/assets/js/app.js')}}"></script>
 
-        var flag = true;
-         $('#hide').click(function(){
-                 
-                if(flag) {
-                     $('#left_nave').addClass('active');
-                    $('.tpl-content-wrapper').addClass('active');
-                    
-                    flag = false;
-                } else {
-                   $('#left_nave').removeClass('active');
-                    $('.tpl-content-wrapper').removeClass('active');
-                    flag = true;
-                }   
-                 });                
-
-               
-        
-    </script>
-    <script src="{{ asset('admins/assets/js/amazeui.min.js') }}"></script>
-    <script src="{{ asset('admins/assets/js/amazeui.datatables.min.js') }}"></script>
-    <script src="{{ asset('admins/assets/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('admins/assets/js/app.js') }}"></script>
-  
 </body>
 
 </html>

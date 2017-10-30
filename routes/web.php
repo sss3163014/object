@@ -15,15 +15,24 @@ Route::get('admin/captcha/{tmp}', 'Admin\LoginController@captcha');
 //后台登陆路由
 Route::resource('admin/login', 'Admin\LoginController');
 //后台路由
-Route::group(['prefix' => 'admin', 'middleware' => 'login' ,'namespace' => 'Admin'], function() {
+//'middleware' => 'login',
+Route::group(['prefix' => 'admin' ,  'namespace' => 'Admin'], function() {
 	//后台首页
 	Route::get('/', 'ShowController@index');
 	//栏目列表显示
 	//Route::post('list', 'ShowController');
 	Route::get('list', 'ShowController@index');
+
+
+	//用户模块
+	Route::resource('user','UserController');
+	Route::post('ban/{id}','UserController@ban');
+	Route::get('auth/{id}','UserController@auth');
+	Route::post('doauth','UserController@doauth');
+
 });
 
-
+//'middleware' => 'login'
 
 //前台首页
 Route::get('/', function () {
@@ -39,4 +48,7 @@ Route::group(['prefix' => 'home', 'namespace' =>'Home'], function() {
 	Route::resource('land', 'LandController');
 	//登陆验证
 	Route::post('land/send', 'LandController@doLand');
+
+	// 个人中心
+	Route::get('user_home' , 'UserController@user_home');
 });
