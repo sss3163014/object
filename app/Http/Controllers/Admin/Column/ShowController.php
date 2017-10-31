@@ -21,18 +21,14 @@ class ShowController extends Controller
     public function index(Request $request)
     {   
         // $where = [];
-        // if($request->has('name')) {
-        //     $name = $reuqest->input('name');
+        // if($request->has('search')) {
+        //     $name = $request->input('search');
         //     $where['name'] = $name;
         //     data_users_type::where('name', 'like', '%'.$name.'%');
         // }
-
-        // $array = data_users_type::all();
-        $array = data_users_type::get();
-
-         // dd($array);
-
-        return view('admin.column.index', compact('array'));
+        $input = $request->input('search') ? $request->input('search') : '';
+        $array = data_users_type::where('name', 'like', '%'.$input.'%')->paginate(3);
+        return view('admin.column.index', compact('array','input'));
     }
 
     /**
