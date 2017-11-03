@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\data_admin_users;
+use App\Model\index_users_login;
+use App\Model\data_users_info;
+use App\Model\blog_role;
+use App\Model\blog_user_role;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -54,11 +57,14 @@ class LoginController extends Controller
      */
 	public function store(Request $request)
 	{
+		
 		$code = \Session::get('mycode');
 		if ($code != $request['code']) {
 			return json_encode(['msg' => '验证码错误', 'code' => 3]);
 		}
-		$result = data_admin_users::where('tel',$request['tel'])->first();
+
+		$result = index_users_login::where('login_name',$request['login_name'])->first();
+		
 
 		if(empty($result)) {
 			return json_encode(['msg' => '帐号错误', 'code' => 0]);
@@ -67,7 +73,26 @@ class LoginController extends Controller
 		if (md5($request['password']) != $result->password) {
 			return json_encode(['msg' => '密码错误', 'code' => 1]);
 		}
-		$request->session()->put('admin_user', $result->toArray());
+		$nick = data_users_info::where('user_id', $result->user_id)->first();
+		$role_id = blog_user_role::where('user_id',$result->user_id)->get();
+		foreach($role_id as $v) {
+			$name[] = blog_role::where('role_id', $v['role_id'])->pluck('role_name');
+		}
+		$userInfo = [
+			'nickname' => $nick->nickname,
+			'login_ip' => $result->last_login_ip,
+			'role_name' => $name,
+			'avatar' =>  $nick->avatar,
+			'user_id' => $nick->user_id
+		];
+
+		session(['admin_user'=> $userInfo]);
 		return json_encode(['code' => 2]);
+	}
+
+	public function doDel()
+	{
+		session()->forget('admin_user');
+		return 2;
 	}
 }

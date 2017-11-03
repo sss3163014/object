@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'login' => \App\Http\Middleware\Login::class,//后台登陆中间键
         'on_off' => \App\Http\Middleware\On_off::class,//前台网页是否维护中间键
+        'hasRole' => \App\Http\Middleware\hasRole::class,//后台权限中间键
     ];
 }

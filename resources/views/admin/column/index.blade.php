@@ -37,20 +37,18 @@
         <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
         <thead>
             <tr>
-                <th>缩略图</th>
-                <th>类别</th>
+                <th>ID</th>
                 <th>标题</th>
+                <th>创建时间</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($array as $arr)
         <tr class="gradeX">
-        <td>
-            <img src="{{ asset('uploads').'/s_'.$arr->logo }}" class="tpl-table-line-img" alt="">
-        </td>
-        <td class="am-text-middle">{{ $arr->type_id }}</td>
+        <td class="am-text-middle">{{ $arr->id }}</td>
         <td class="am-text-middle">{{ $arr->name }}</td>
+        <td class="am-text-middle">{{ date('Y-m-d H:i:s', $arr->created_at) }}</td>
         <td class="am-text-middle">
            <div class="tpl-table-black-operation">
    <a href="{{ url('admin/list').'/'.$arr->id }}"><i class="am-icon-pencil"></i> 编辑</a>

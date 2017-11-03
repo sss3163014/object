@@ -30,7 +30,7 @@
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="{{ asset('admins/assets/img/logo.png') }}" alt=""></a>
+                <a href="javascript:;"><img src="{{ asset('admins/assets/img/logob.png') }}" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
@@ -41,128 +41,18 @@
                 </span>
                 </div>
                 <!-- 搜索 -->
-                <div class="am-fl tpl-header-search">
-                    <form class="tpl-header-search-form" action="javascript:;">
-                        <button class="tpl-header-search-btn am-icon-search"></button>
-                        <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
-                    </form>
-                </div>
+                
                 <!-- 其它功能-->
                 <div class="am-fr tpl-header-navbar">
                     <ul>
-                        <!-- 欢迎语 -->
-                        <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
-                        </li>
-
-                        <!-- 新邮件 -->
-                        <li class="am-dropdown tpl-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-envelope"></i>
-                                <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
-                            </a>
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="{{ asset('admins/assets/img/user04.png') }}" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            3小时前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-success"></i>
-                                                <span>夕风色</span>
-                                            </div>
-                                            <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
-                                            <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="{{ asset('admins/assets/img/user02.png') }}" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            5天前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-warning"></i>
-                                                <span>禁言小张</span>
-                                            </div>
-                                            <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
-                                            <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <i class="am-icon-circle-o"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- 新提示 -->
-                        <li class="am-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-bell"></i>
-                                <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
-                            </a>
-
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-line-chart"></i>
-                                            <span> 有6笔新的销售订单</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            12分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-star"></i>
-                                            <span> 有3个来自人事部的消息</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            30分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-folder-o"></i>
-                                            <span> 上午开会记录存档</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            1天前
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <i class="am-icon-bell"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                       
+                       
+                           
+                        
 
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="javascript:;">
+                            <a href="javascript:;" onclick="onDel()">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
@@ -191,11 +81,11 @@
             <div class="tpl-sidebar-user-panel">
                 <div class="tpl-user-panel-slide-toggleable">
                     <div class="tpl-user-panel-profile-picture">
-                        <img src="{{ asset('admins/assets/img/user04.png') }}" alt="">
+                        <img src="{{ url('uploads').'/'.session('admin_user')['avatar'] }}" alt="">
                     </div>
                     <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
+              {{ session('admin_user')['nickname'] }}
           </span>
                     <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
                 </div>
@@ -203,12 +93,33 @@
 
             <!-- 菜单 -->
             <ul class="sidebar-nav">
-                <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
+                
                 <li class="sidebar-nav-link">
                     <a href="{{ url('admin') }}" class="active">
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                     </a>
                 </li>
+                <!-- 用户区域开始-->
+                <li class="sidebar-nav-link" >
+                    <a href="javascript:;" class="sidebar-nav-sub-title"  id="user_tab" >
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 用户管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub" style="display: none;" id="user_nav">
+                         <li class="sidebar-nav-link">
+                            <a href="{{ url('admin/user/create') }}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 用户添加
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link ">
+                            <a href="{{ url('admin/user') }}" >
+                                <span class="am-icon-angle-right sidebar-nav-link-logo" ></span> 用户列表
+                            </a>
+                        </li>    
+                    </ul>
+                </li>
+                <!-- 用户区域结束-->
                 <li class="sidebar-nav-link">
                     <a href="{{ url('admin/list') }}">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 栏目列表
@@ -233,6 +144,56 @@
                         </li>
                     </ul>
                 </li>
+                <!-- 内容区域 -->
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 帖子管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{ url('admin/post') }}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 帖子列表
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{ url('admin/post/editindex') }}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 帖子添加
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                 <!-- 权限管理开始 -->
+                <li class="sidebar-nav-link">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 权限管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{ url('admin/roleList/') }}">
+                                <i class="am-icon-table sidebar-nav-link-logo"></i> 角色列表
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link">
+                            <a href="{{ url('admin/permissionList') }}">
+                                <i class="am-icon-table sidebar-nav-link-logo"></i> 权限列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- 权限管理结束 -->
+                 <li class="sidebar-nav-link">
+                    <a href="{{ url('admin/link') }}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>友情链接
+                    </a>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="{{ url('admin/GuangGao') }}">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i>广告
+                    </a>
+                </li>  
             </ul>
         </div>  
         <!-- 内容区域 -->
@@ -253,4 +214,22 @@
     <script src="{{ asset('admins/assets/js/app.js') }}"></script>
 
 </body>   
+<script type="text/javascript">
+    function onDel() {
+        //询问框
+            layer.confirm('确认推出么？', {
+                btn: ['确认','取消'] //按钮
+            }, function(){
+//                $.post('请求的路径'，携带的数据参数，执行后返回的数据)
+//                {'key':'value','key1':'value1'}
+                $.post("{{ url('admin/del') }}",{'_token':"{{ csrf_token() }}"},function(data){
+                    if(data == 2){
+                        //刷新页面
+                        location.href = location.href;
+                    }
+                })
+
+            });
+    }
+</script>
 </html>

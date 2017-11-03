@@ -26,14 +26,12 @@
 <![endif]-->
 
 <noscript><img src="{{ asset('homes/picture/atrk.gif') }}" style="display:none" height="1" width="1" alt="" /></noscript>
-<link rel="stylesheet" type="text/css" href="{{ asset('homes/css/common.43b90947.css') }}"/><link rel="stylesheet" type="text/css" href="{{ asset('homes/css/jquery.webui-popover.ace6c896.css') }}"/><link rel="stylesheet" type="text/css" href="{{ asset('homes/css/bbs.8d80e54e.css') }}"/><link rel="stylesheet" type="text/css" href="{{ asset('homes/css/bbswidget.dd4ea4b8.css') }}"/></head>
-
+<link rel="stylesheet" type="text/css" href="{{ asset('homes/css/common.43b90947.css') }}"/><link rel="stylesheet" type="text/css" href="{{ asset('homes/css/jquery.webui-popover.ace6c896.css') }}"/><link rel="stylesheet" type="text/css" href="{{ asset('homes/css/bbs.8d80e54e.css') }}"/><link rel="stylesheet" type="text/css" href="{{ asset('homes/css/bbswidget.dd4ea4b8.css') }}"/><link rel="stylesheet" href="{{ asset('css/paging.css') }}"></head>
 <body>
 <div class="bbsheader">
 <div class="bbsCont">
 <ul class="topnav">
 <li><a href="http://www.kdnet.net">首页</a></li>
-<li><a target="_blank" href="http://group.kdnet.net">群组</a></li>
 </ul>
 <div class="rightnav">
 @if(session('user'))
@@ -59,11 +57,9 @@
 <a href="//club.kdnet.net"><img src="{{ asset('admins/assets/img/logob.png') }}" style="width:140px;height:64px;"></a>
 </div>
 <ul>
-<li><a target="_blank" href="//hot.kdnet.net/hottopiclist.asp">今日热帖</a></li>
-<li><a href="//club.kdnet.net/list.asp?boardid=1&topicmode=3">原创帖文</a></li>
-<li><a href="//club.kdnet.net/list.asp?boardid=1&topicmode=1">精华帖文</a></li>
-<li><a href="#">猫眼观察</a></li>
-<li><a target="_blank" href="#">猫论天下</a></li>
+@foreach($result as $re)
+<li><a target="_blank" href="//hot.kdnet.net/hottopiclist.asp">{{ $re->name }}</a></li>
+@endforeach
 </ul>
 @if(session('user'))
 <a href="#"><img src="{{ url('uploads').'/'.session('userInfo')->avatar }}" style="width:140px;height:64px;float:right;margin-top:20px;" id="green"></a>
@@ -105,33 +101,14 @@
 <!--板块内容-->
 <div class="bbslist">
 <div class="title">
-<a href="//club.kdnet.net?p=c1-1" class="active">原创帖文</a>
-<a href="//club.kdnet.net?p=c1-2" >猫眼观察</a>
+<a href="javascript:;" onclick="check1({{ $result[0]->id }})" id="check1" class="active">{{ $result[0]->name }}</a>
+<a href="javascript:;" onclick="check2({{ $result[1]->id }})" id="check2">{{ $result[1]->name }}</a>
 </div>
 <!--帖子内容-->
-<ul>
-<li>
-<a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989"><img src="{{ asset('homes/picture/59e185c66db4c.jpg') }}"></a>
-<div class="list-title"><a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989">一念窃贼、一念英雄，谁的灵魂不焦灼</a></div>
-<div class="list-desc"><a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989">其实生活，不像京剧里单凭脸谱便知道谁好谁坏、谁善谁恶，善人亦可能大奸；小偷亦有侠义和人性的光芒。</a></div>
-<div class="list-author">
-<a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989">壹权谋</a>
-<span>2017/10/13 22:38</span>
-<span>点击<a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989">24204</a></span><span>回复<a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989">27</a></span><a href="http://club.kdnet.net/list.asp?boardid=1" class="plate">来自：猫眼看人</a>
+<div id="check_one">
 </div>
-</li>
-</ul>
-<div class="postlist-page">
-<form class="c_pager">
-<span class="numInfo">共1185个记录，页次1/40页</span>
-<a href="javascript:void(0);" class="btn btn-default reloadbtn">刷新</a>
-<a href="//club.kdnet.net?p=c1-1&page=2" class="btn btn-default next">下一页<i class="fa fa-chevron-right"></i></a>
-<div class="input-group">
-<input type="text" class="form-control" id="page_input">
-<button type="submit" class="btn btn-primary page_button" action-uri="//club.kdnet.net?p=c1-1&page=%d">GO</button>
-</div>
-</form>
-</div>
+<div id="check_two" style="display:none">
+<!--帖子内容结束-->
 </div>
 </div>
 <div class="bbsRight">
@@ -199,11 +176,15 @@ Copyright &copy;2017<a target="_blank" href="http://www.kdnet.net">kdnet.net</a>
 </div>
 </div>
 <div class="popover-mask"></div>
+<script type="text/javascript">
+	$(document).ready(function(){
+  		doCode2({{ $result[1]->id }});
+  		doCode1({{ $result[0]->id }});
+	});
+</script>
+</body>
 <script src="{{ asset('homes/js/k.js') }}"></script>
-</body><script type="text/javascript" src="{{ asset('homes/js/common.7392a1ba.js') }}"></script>
 <script type="text/javascript" src="{{ asset('homes/js/log.js') }}"></script>
-<script type="text/javascript" src="{{ asset('homes/js/bbs.1fadd174.js') }}"></script>
-<script type="text/javascript" src="{{ asset('homes/js/bbsindex.dd163fe6.js') }}"></script>
 <script>
 	$("#green").hover(
 	  function () {
@@ -213,5 +194,73 @@ Copyright &copy;2017<a target="_blank" href="http://www.kdnet.net">kdnet.net</a>
 	    $('#love').html('');
 	  }
 	);
+
+	check1 = function(id){
+		$('#check1').addClass('active');
+		$('#check2').removeClass('active');
+		$('#check_one').css('display','');
+		$('#check_two').css('display','none');
+	};
+	check2 = function(id){
+		$('#check2').addClass('active');
+		$('#check1').removeClass('active');
+		$('#check_two').css('display','');
+		$('#check_one').css('display','none');
+		
+	};
+
+
+	doCode2 = function (id) {
+		$.get("{{ url('/opt') }}",{'id': id}, function(data){
+			$("#check_two").empty();
+			$('#check_two').html();
+			 $.each( data, function(i, n){
+			 		$('#check_two').append(`
+			<ul>
+				<li>
+					<a target="_blank" href="{{ url('home/list') }}"><img src="{{ asset('homes/picture/59e185c66db4c.jpg') }}"></a>
+					<div class="list-title"><a target="_blank" href="{{ url('home/list') }}">`+n.title+`</a></div>
+					<div class="list-desc"><a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989">`+n.subtitle+`</a></div>
+					<div class="list-author">
+					<a target="_blank" href="{{ url('home/list') }}">壹权谋</a>
+					<span>123</span>
+					<span>点击<a target="_blank" href="{{ url('home/list') }}">`+n.count+`</a></span><span>回复<a target="_blank" href="{{ url('home/list') }}">27</a></span><a href="{{ url('home/list') }}" class="plate">作者：`+n.type_id+`</a>
+					</div>
+				</li>
+			</ul>
+			<div class="postlist-page">
+			</div>
+				`);
+			 });
+			
+		});
+	}
+	doCode1 = function (id) {
+		$.get("{{ url('/opt') }}",{'id': id}, function(data){
+			$("#check_one").empty();
+			$('#check_one').html();
+			 $.each( data, function(i, n){
+			 		$('#check_one').append(`
+			<ul>
+				<li>
+					<a target="_blank" href="{{ url('home/list') }}"><img src="{{ asset('homes/picture/59e185c66db4c.jpg') }}"></a>
+					<div class="list-title"><a target="_blank" href="{{ url('home/list') }}">`+n.title+`</a></div>
+					<div class="list-desc"><a target="_blank" href="http://club.kdnet.net/dispbbs.asp?id=12452989">`+n.subtitle+`</a></div>
+					<div class="list-author">
+					<a target="_blank" href="{{ url('home/list') }}">壹权谋</a>
+					<span>123</span>
+					<span>点击<a target="_blank" href="{{ url('home/list') }}">`+n.count+`</a></span><span>回复<a target="_blank" href="{{ url('home/list') }}">27</a></span><a href="{{ url('home/list') }}" class="plate">作者：`+n.type_id+`</a>
+					</div>
+				</li>
+			</ul>
+			<div class="postlist-page">
+			</div>
+			</div>
+				
+				`);
+			 });
+			
+		});
+	}
 </script>
 </html>

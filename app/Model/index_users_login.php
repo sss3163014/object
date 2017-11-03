@@ -12,4 +12,6 @@ class index_users_login extends Model
      * @var string
      */
     protected $table = 'index_users_login';
+
+   
 }

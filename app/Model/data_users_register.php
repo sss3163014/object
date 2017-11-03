@@ -12,4 +12,6 @@ class data_users_register extends Model
      * @var string
      */
     protected $table = 'data_users_register';
+
+   
 }

@@ -54,4 +54,9 @@ class data_users_type extends Model
         }
         return $arr;
     }
+
+    public function info()
+    {
+        return $this->belongsTo('App\Model\data_users_post','id','type_id');
+    }
 }

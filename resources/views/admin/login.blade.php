@@ -45,7 +45,7 @@
 
                 <form class="am-form tpl-form-line-form"  onsubmit="return doLogin()">
                     <div class="am-form-group">
-                        <input type="text" name="name" class="tpl-form-input" id="tel" placeholder="请输入账号">
+                        <input type="text" name="login_name" class="tpl-form-input" id="tel" placeholder="请输入账号">
 
                     </div>
                     <div class="am-form-group">
@@ -72,7 +72,7 @@
 <script>
     doLogin = function () {
 
-        var result = {'tel':$('#tel').val(), 'password':$('#pass').val(), '_token': "{{ csrf_token() }}", 'code':$('#code').val()};
+        var result = {'login_name':$('#tel').val(), 'password':$('#pass').val(), '_token': "{{ csrf_token() }}", 'code':$('#code').val()};
         $.post("{{ url('admin/login') }}", result, function(data) {
             if (data.code == 2) {
                 window.location.href = "{{ url('admin') }}";
